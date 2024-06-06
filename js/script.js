@@ -1,11 +1,5 @@
 const searchFormEl = document.querySelector('#search-form');
-// const inputValue = document.querySelector('#search-input').value;
-// const inputValue = $('#search-form').val();
-// const valInput = document.getElementById("#search-input").value;
-// var inputValue = $('#search-input').val();
-// const valInput = document.getElementById("search-input").value;
-
-
+const resultCont = document.querySelector('#result-content');
 
 function handleSearchFormSubmit(event) {
   event.preventDefault();
@@ -29,15 +23,24 @@ fetch(apiUrl)
     // console.log(data[0].lon)
     const lat = data[0].lat;
     const lon = data[0].lon;
-    console.log(lat)
-    console.log(lon)
+    // console.log(lat)
+    // console.log(lon)
     const apiTwo = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=3eff6f3173e6337e807c89458953d7b6&units=imperial`
     fetch(apiTwo)
     .then(function(res) {
       return res.json();
     })
-    .then(function (data) {
-       console.log(data);
+    .then(function (newData) {
+      for (i = 0; i<6; i++){
+       console.log(newData.list[i].main.temp);
+       console.log(newData.list[i].main.humidity);
+       console.log(newData.list[i].wind.speed); 
+
+       const newDiv = document.createElement('div');
+       newDiv.textContent = `this is data for call ${i} ${newData.list[i].main.temp} ${newData.list[i].wind.speed} ${newData.list[i].main.humidity}`
+       resultCont.appendChild(newDiv);
+      }
+
       })
 })
 }
