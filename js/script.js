@@ -12,7 +12,7 @@ function handleSearchFormSubmit(event) {
 }
 
 function callApi(inputName){
-  const apiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${inputName},&limit=1&APPID=3eff6f3173e6337e807c89458953d7b6`
+  const apiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${inputName},&limit=1&APPID=3eff6f3173e6337e807c89458953d7b6`
   
 fetch(apiUrl)
 .then(function (res) {
@@ -26,7 +26,7 @@ fetch(apiUrl)
     const lon = data[0].lon;
     // console.log(lat)
     // console.log(lon)
-    const apiTwo = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=3eff6f3173e6337e807c89458953d7b6&units=imperial`
+    const apiTwo = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=3eff6f3173e6337e807c89458953d7b6&units=imperial`
     fetch(apiTwo)
     .then(function(res) {
       return res.json();
